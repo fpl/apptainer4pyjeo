@@ -1,0 +1,56 @@
+Bootstrap: localimage
+From: pyjeo1.sif
+
+%runscript
+	export INSTALL_HOME=$HOME/pyjeo-install
+	rm -rf $INSTALL_HOME \
+	&& mkdir $INSTALL_HOME
+
+	cd $INSTALL_HOME \
+	&& tar xvf $HOME/pyjeo/mialib.tar.gz \
+	&& tar xvf $HOME/pyjeo/jiplib.tar.gz \
+	&& tar xvf $HOME/pyjeo/pyjeo.tar.gz
+
+	cd $INSTALL_HOME/jeolib-miallib* \
+	&& rm -rf build \
+	&& mkdir build \
+	&& cd build \
+	&& cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_HOME .. \
+	&& cmake --build . \
+	&& cmake --install .
+
+	if [ ! -f $HOME/venv/bin/activate ]
+	then	
+		echo 'Build venv'
+		python3 -m venv $HOME/venv
+	fi
+	. $HOME/venv/bin/activate 
+
+	pip3 install 'xarray>=2022.3.0' --upgrade --ignore-installed --force-reinstall
+	pip3 install 'numpy>=1.23' --upgrade --ignore-installed --force-reinstall
+	pip3 install scikit-learn --upgrade --ignore-installed --force-reinstall
+	pip3 install Cmake --upgrade --ignore-installed --force-reinstall
+	pip3 install wheel --upgrade --ignore-installed --force-reinstall
+
+	cd $INSTALL_HOME/jeolib-jiplib* \
+	&& rm -rf build \
+	&& mkdir build \
+	&& cd build \
+	&& cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_HOME .. \
+	&& cmake --build . \
+	&& cp jiplib-*.whl $INSTALL_HOME \
+	&& ls $INSTALL_HOME
+
+	cd $INSTALL_HOME/jeolib-pyjeo* \
+	&& pip3 wheel . \
+	&& cp pyjeo-*.whl $INSTALL_HOME 
+
+	pip3 install ${INSTALL_HOME}/jiplib-*.whl 
+	pip3 install ${INSTALL_HOME}/pyjeo-*.whl
+
+	pip3 install 'xarray>=2022.3.0' --upgrade --ignore-installed --force-reinstall
+	pip3 install 'numpy>=1.23' --upgrade --ignore-installed --force-reinstall
+	pip3 install scikit-learn --upgrade --ignore-installed --force-reinstall
+	pip3 install jupyterlab --upgrade --ignore-installed --force-reinstall
+	pip3 install ipykernel --upgrade --ignore-installed --force-reinstall
+
