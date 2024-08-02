@@ -21,6 +21,7 @@ From: pyjeo1.sif
 
 	BASE=$HOME
 
+	# it is strictly required using a venv
 	if [ ! -f $BASE/pyjeovenv/bin/activate ]
 	then	
 		echo 'Build pyjeovenv'
@@ -28,11 +29,14 @@ From: pyjeo1.sif
 	fi
 	. $BASE/pyjeovenv/bin/activate 
 
-	pip3 install 'xarray>=2022.3.0' --upgrade --ignore-installed --force-reinstall --no-cache-dir
-	pip3 install 'numpy>=1.23' --upgrade --ignore-installed --force-reinstall --no-cache-dir
-	pip3 install scikit-learn --upgrade --ignore-installed --force-reinstall --no-cache-dir
-	pip3 install Cmake --upgrade --ignore-installed --force-reinstall --no-cache-dir
-	pip3 install wheel --upgrade --ignore-installed --force-reinstall --no-cache-dir
+	# NOTE: to avoid mess with recent updates in numpy and xarray
+	# that introduced incompatibilities with past releases,
+	# use strict versioning
+	pip3 install 'numpy==1.26.4'
+	pip3 install 'xarray==2024.03.0'
+	pip3 install 'scikit-learn==1.5.1'
+	pip3 install Cmake 
+	pip3 install wheel
 
 	cd $INSTALL_HOME/jeolib-jiplib* \
 	&& rm -rf build \
@@ -50,9 +54,6 @@ From: pyjeo1.sif
 	pip3 install ${INSTALL_HOME}/jiplib-*.whl  --no-cache-dir
 	pip3 install ${INSTALL_HOME}/pyjeo-*.whl --no-cache-dir
 
-	pip3 install 'xarray>=2022.3.0' --upgrade --ignore-installed --force-reinstall --no-cache-dir
-	pip3 install 'numpy>=1.23' --upgrade --ignore-installed --force-reinstall --no-cache-dir
-	pip3 install scikit-learn --upgrade --ignore-installed --force-reinstall --no-cache-dir
-	pip3 install jupyterlab --upgrade --ignore-installed --force-reinstall --no-cache-dir
-	pip3 install ipykernel --upgrade --ignore-installed --force-reinstall --no-cache-dir
+	pip3 install jupyterlab
+	pip3 install ipykernel
 

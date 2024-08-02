@@ -39,6 +39,6 @@ From: debian:bookworm
         libpython3-dev \
         libboost-serialization-dev \
         libboost-filesystem-dev \
-	python3-pip \
-	python3-venv \
-	python3-numpy
+		python3-pip \
+		python3-venv \
+		python3-numpy
