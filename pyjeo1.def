@@ -2,14 +2,14 @@ Bootstrap: docker
 From: debian:bookworm
 
 %labels
-	Author Francesco Lovergine
-	ContactEmail frankie@debian.org
-	Name PyJeo container 1
+    Author Francesco Lovergine
+    ContactEmail frankie@debian.org
+    Name PyJeo container 1
 
 %post
-	apt update -y
-	apt install -y \
-	build-essential \
+    apt update -y
+    apt install -y \
+    build-essential \
         apt-utils \
         curl \
         git \
@@ -39,6 +39,6 @@ From: debian:bookworm
         libpython3-dev \
         libboost-serialization-dev \
         libboost-filesystem-dev \
-		python3-pip \
-		python3-venv \
-		python3-numpy
+        python3-pip \
+        python3-venv \
+        python3-numpy
