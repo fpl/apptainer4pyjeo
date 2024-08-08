@@ -28,9 +28,12 @@ if ! grep PYJEO_BASE $HOME/.bashrc
 then
 cat >$HOME/.bashrc <<EOF
 #--- Begin stuff added to run PyJeo in apptainer ---
+if [ $(printenv|grep SLURM|wc -l) -gt 1 ]
+then
 export PYJEO_BASE=$BASE
 [ -f \$PYJEO_BASE/pyjeovenv/bin/activate ] && source \$PYJEO_BASE/pyjeovenv/bin/activate
-export PYJEO_RUN="apptainer exec --bind /gpfs/gibbs/project/sbsc/hydro --bind /gpfs/gibbs/pi/hydro/hydro --bind /vast/palmer/scratch/sbsc/hydro \$PYJEO_BASE/pyjeo2.sif python3"
+export PYJEO_RUN="apptainer exec --bind /gpfs/gibbs/project/sbsc/hydro --bind /gpfs/gibbs/pi/hydro/hydro --bind /vast/palmer/scratch/sbsc/hydro \$PYJEO_BASE/pyjeo2.sif bash -i -c python3"
+fi
 #--- End ---
 EOF
 fi
