@@ -3,7 +3,7 @@
 # This script installs an apptainer container for PyJeo use in SBSC HPC cluster
 #
 
-BASE=/gpfs/gibbs/project/sbsc/hydro/pyjeo-stuff
+BASE=/vast/palmer/scratch/sbsc/hydro/pyjeo-stuff
 
 mkdir $BASE || true
 

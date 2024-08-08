@@ -2,7 +2,7 @@ Bootstrap: localimage
 From: pyjeo1.sif
 
 %runscript
-    BASE=/gpfs/gibbs/project/sbsc/hydro/pyjeo-stuff
+    BASE=/vast/palmer/scratch/sbsc/hydro/pyjeo-stuff
     mkdir -p $BASE || true
 
     export INSTALL_HOME=$BASE/pyjeo-install
