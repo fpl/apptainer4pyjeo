@@ -7,7 +7,7 @@ BASE=/vast/palmer/scratch/sbsc/hydro/pyjeo-stuff
 
 mkdir $BASE || true
 
-rm -rf $BASE/pyjeo $BASE/pyjeo-install
+rm -rf $BASE/pyjeo $BASE/pyjeo-install $BASE/pip-cache $BASE/pyjeo-venv
 mkdir $BASE/pyjeo
 
 ( cd $BASE/pyjeo \

@@ -22,6 +22,7 @@ From: pyjeo1.sif
     && cmake --build . \
     && cmake --install .
 
+    mkdir $BASE/pip-cache
     pip3 config --user set global.cache-dir $BASE/pip-cache
 
     # it is strictly required using a venv
