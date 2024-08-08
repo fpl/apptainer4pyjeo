@@ -10,9 +10,9 @@ From: pyjeo1.sif
     && mkdir $INSTALL_HOME
 
     cd $INSTALL_HOME \
-    && tar xvf $HOME/pyjeo/mialib.tar.gz \
-    && tar xvf $HOME/pyjeo/jiplib.tar.gz \
-    && tar xvf $HOME/pyjeo/pyjeo.tar.gz
+    && tar xvf $BASE/pyjeo/mialib.tar.gz \
+    && tar xvf $BASE/pyjeo/jiplib.tar.gz \
+    && tar xvf $BASE/pyjeo/pyjeo.tar.gz
 
     cd $INSTALL_HOME/jeolib-miallib* \
     && rm -rf build \
