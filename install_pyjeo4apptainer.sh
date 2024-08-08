@@ -19,9 +19,9 @@ mkdir $BASE/pyjeo
 cp -v pyjeo*.def $BASE/.
 
 ( cd $BASE \
-apptainer build $BASE/pyjeo1.sif $BASE/pyjeo1.def \
-apptainer build $BASE/pyjeo2.sif $BASE/pyjeo2.def \
-apptainer run --bind /gpfs/gibbs/project/sbsc/hydro $BASE/pyjeo2.sif $BASE/pyjeo2.def \
+&& apptainer build $BASE/pyjeo1.sif $BASE/pyjeo1.def \
+&& apptainer build $BASE/pyjeo2.sif $BASE/pyjeo2.def \
+&& apptainer run --bind /gpfs/gibbs/project/sbsc/hydro $BASE/pyjeo2.sif $BASE/pyjeo2.def \
 )
 
 if ! grep PYJEO_BASE $HOME/.bashrc
