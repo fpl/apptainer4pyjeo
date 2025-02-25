@@ -9,7 +9,6 @@ From: debian:bookworm
 %post
     apt update -y
     apt install -y \
-    build-essential \
         apt-utils \
         curl \
         git \
